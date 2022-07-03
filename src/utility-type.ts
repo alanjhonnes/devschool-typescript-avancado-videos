@@ -20,7 +20,7 @@ export type ExcludeUserName = Exclude<keyof User, "name">
 
 export type ExtractUser = Extract<User | null, User>
 
-export type OmitUser = Omit<User, "name">
+export type OmitUser = Omit<User, "name" | 'id'>
 
 export type NonNullableUserId = NonNullable<User['id']>
 

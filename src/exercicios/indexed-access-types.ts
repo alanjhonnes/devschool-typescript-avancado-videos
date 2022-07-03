@@ -1,6 +1,6 @@
 export const handlers = {
-    click: (target: HTMLElement) => {},
-    scroll: (distance: number) => {},
+    click: (target: HTMLElement) => { },
+    scroll: (distance: number) => { },
 } as const;
 
 export type Handlers = typeof handlers;

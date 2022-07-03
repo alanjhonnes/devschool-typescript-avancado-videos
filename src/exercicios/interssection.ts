@@ -1,14 +1,3 @@
-export function addPropertyToObject<T extends object, P extends string, V>(obj: T, prop: P, value: V): T & Record<P, V> {
-    return {
-        ...obj,
-        [prop]: value
-    } as any
-}
-
-const obj = {
-    name: "alan"
-}
-
-const result = addPropertyToObject(obj, "age", 32)
-
-result.
+// Faça uma função que mergeie dois objetos, retornando um tipo que é a interssecção dos dois tipos dos objetos.
+// Dica - utilize type-parameters para receber os tipos dos objetos dinâmicamente e spread ou Object.assign para a fazer o merge
+// na implementação da função.

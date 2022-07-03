@@ -1,13 +1,18 @@
 
 export type Constructor<T = {}> = new (...args: any[]) => T;
 
-// Mixin é um pattern que possibilita utilizarmos composição ao invés de extender um tipo base
 
 export function identifiable<TBase extends Constructor>(base: TBase) {
     return class extends base {
         id = Math.round(Math.random() * 99999999);
     }
 }
+
+const IdentifiableDate = identifiable(Date)
+
+const identifiableDate = new IdentifiableDate()
+identifiableDate.id
+
 
 export interface NodeTyped {
     type: string;
@@ -27,10 +32,6 @@ export class Node<T extends string> implements NodeTyped {
     }
 }
 
-export const IdentifiableNode = timestampable(changeableType(identifiable(Node)));
-
-const idNode = new IdentifiableNode("square");
-
 export function timestampable<TBase extends Constructor>(base: TBase) {
     return class extends base {
         createdAt = new Date();
@@ -42,9 +43,6 @@ export function timestampable<TBase extends Constructor>(base: TBase) {
     }
 }
 
-export const TimedAndIdentifiedNode = timestampable(IdentifiableNode);
+export const IdentifiableNode = changeableType(identifiable(Node));
 
-const timedAndIdentifiedNode = new TimedAndIdentifiedNode("square");
-
-timedAndIdentifiedNode.setModified();
-
+const idNode = new IdentifiableNode("square");

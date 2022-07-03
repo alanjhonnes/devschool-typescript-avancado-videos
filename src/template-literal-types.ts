@@ -8,9 +8,9 @@ export type HelloWorld = `${Hello} ${World}`;
 
 
 
-
-export type Size = 'small' | 'medium' | 'large';
 export type Icon = 'user' | 'www' | 'checkmark'
+export type Size = 'small' | 'medium' | 'large';
+
 
 export type IconSize = `${Icon}-${Size}`;
 
@@ -37,4 +37,18 @@ export type UserOnChangedEvent2 = {
     [P in keyof User as `${P}Changed`]: (value: User[P]) => void
 }
 
-export type UserChange = UserOnChangedEvent2<User>
+export type OnChangedEvent<T> = {
+    [P in keyof T as `${Extract<P, string>}Changed`]: (value: T[P]) => void
+}
+
+export type UserOnChangedEvent3 = OnChangedEvent<User>
+
+
+export type Trim<S extends string> =
+    S extends ` ${infer T}` ? Trim<T> :
+    S extends `${infer T} ` ? Trim<T> :
+    S;
+
+
+export type HelloWithSpaces = '    hello    '
+export type T1 = Trim<HelloWithSpaces>;
