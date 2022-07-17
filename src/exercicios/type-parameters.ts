@@ -2,8 +2,8 @@
 // O primeiro tipo deve ser o tipo do objeto a ser editado
 // o segundo tipo deve ser uma das propriedades do tipo do objeto
 // o terceiro tipo deve ser o tipo de valor que essa propriedade do objeto aceita
-export function editProperty(obj: any, property: string, value: any): void {
+export function editProperty<O, P extends keyof O, V extends O[P]>(obj: O, property: P, value: V): void {
     obj[property] = value
 }
 
-editProperty({ nome: "alan" }, "nome", "a")
+editProperty({ nome: "alan", age: 32 }, "age", 10)
